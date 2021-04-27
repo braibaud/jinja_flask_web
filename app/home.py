@@ -1,18 +1,25 @@
-import flask as fl
-import flask_restful as flr
-from flask_restful import reqparse as flr_r
-import flask_cors as flc
-from flask_wtf import csrf as flwc
+from flask import request
+from app.base import BaseView
 
+class Home(BaseView):
 
-class Info(flr.Resource):
+    def get_template_name(self) -> str:
+        return 'home.j2'
 
-    def __init__(self):
-        super(Info, self).__init__()
+    def process_request(self, **kwargs) -> dict:
 
-    def get(self):
+        print('entering Home.process_request')
+
+        if kwargs is not None:
+            for key, value in kwargs.items():
+                print('{0}: {1}'.format(key, value))
+
         return {
-            'success': True,
-            'version': '1.0',
-            'status': 'ready'
+            'users': [
+                {
+                    'firstname': 'benjamin',
+                    'lastname': 'raibaud',
+                    'age': 45
+                }
+            ]
         }

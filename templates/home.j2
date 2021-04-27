@@ -1,0 +1,23 @@
+{% extends "master.j2" %}
+
+
+<!-- HEAD -->
+{% block head %}
+{% endblock %}
+
+
+<!-- PAGE -->
+{% block page %}
+    {% for user in users %}
+    <ul>
+        <li>firstname: {{ user.firstname }}</li>
+        <li>lastname: {{ user.lastname }}</li>
+        <li>age: {{ user.age }}</li>
+    </ul>
+    {% endfor %}
+{% endblock %}
+
+
+<!-- SCRIPT -->
+{% block script %}
+{% endblock %}
