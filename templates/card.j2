@@ -1,0 +1,47 @@
+{% macro render_card(header=None, title=None, subtitle=None, text=None, links=None, buttons=None, footer=None) %}
+{# links = [{ 'text': ..., 'url': ..., 'onclick': ... }, ...] #}
+{# buttons = [{ 'text': ..., 'url': ..., 'onclick': ..., 'color': ... }, ...] #}
+<div class="card border-secondary">
+
+  {% if header is defined and header|length %}
+  <div class="card-header">{{ header }}</div>
+  {% endif %}
+
+  <div class="card-body">
+
+    {% if title is defined and title|length %}
+    <h5 class="card-title">{{ title }}</h5>
+    {% endif %}
+
+    {% if subtitle is defined and subtitle|length %}
+    <h6 class="card-subtitle mb-2 text-muted">{{ subtitle }}</h6>
+    {% endif %}
+
+    {% if text is defined and text|length %}
+    <p class="card-text">{{ text }}</p>
+    {% endif %}
+
+    {% if links is defined %}
+      {% for link in links %}
+    <a href="{% if link.url is defined and link.url|length %}{{ link.url }}{% else %}#{% endif %}" 
+    {% if link.onclick is defined and link.onclick|length %}onclick='javascript:{{ link.onclick }};'{% endif %}
+       class="card-link">{{ link.text }}</a>
+      {% endfor %}
+    {% endif %}
+
+    {% if buttons is defined %}
+      {% for button in buttons %}
+    <a href="{% if button.url is defined and button.url|length %}{{ button.url }}{% else %}#{% endif %}" 
+    {% if button.onclick is defined and button.onclick|length %}onclick='javascript:{{ button.onclick }};'{% endif %}
+       class="btn {% if button.color is defined and button.color|length %}btn-{{ button.color }}{% endif %}">{{ button.text }}</a>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if footer is defined and footer|length %}
+  <div class="card-footer">{{ footer }}</div>
+  {% endif %}
+
+</div>
+
+{% endmacro %}  

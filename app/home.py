@@ -15,11 +15,15 @@ class Home(BaseView):
                 print('{0}: {1}'.format(key, value))
 
         return {
-            'users': [
+            'cards': [
                 {
-                    'firstname': 'benjamin',
-                    'lastname': 'raibaud',
-                    'age': 45
+                    'header': None, 
+                    'title': None, 
+                    'subtitle': None, 
+                    'text': None, 
+                    'links': None, 
+                    'buttons': [], 
+                    'footer': None
                 }
             ]
         }
